@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+
+  7dtdserver:
+
+    image: vinanrra/7dtd-server:latest
+    restart: unless-stopped
+    tty: true
+    environment:
+      - START_MODE=3
+      - VERSION=stable
+      - PUID=1000 # Remember to use same as your user
+      - PGID=1000 # Remember to use same as your user
+      - TimeZone=America/Sao_Paulo
+      - TEST_ALERT=NO # Optional - Send a test alert
+      - UPDATE_MODS=YES
+      - ALLOC_FIXES=NO
+      - ALLOC_FIXES_UPDATE
+      - UNDEAD_LEGACY=NO
+      - UNDEAD_LEGACY_VERSION=stable
+      - UNDEAD_LEGACY_UPDATE=NO
+      - DARKNESS_FALLS=NO
+      - DARKNESS_FALLS_UPDATE=NO
+      - DARKNESS_FALLS_URL=False
+      - ENZOMBIES=NO
+      - ENZOMBIES_ADDON_SNUFKIN=NO
+      - ENZOMBIES_ADDON_ROBELOTO=NO
+      - ENZOMBIES_ADDON_NONUDES=NO
+      - ENZOMBIES_UPDATE=NO
+      - CPM=NO
+      - CPM_UPDATE=NO
+      - BEPINEX=NO
+      - BEPINEX_UPDATE=NO
+      - BACKUP=YES
+      - MONITOR=NO
+    volumes:
+      - ./data/7DaysToDie:/home/sdtdserver/.local/share/7DaysToDie/
+      - ./data/GeneratedWorlds:/home/sdtdserver/serverfiles/Data/Worlds
+      - ./data/LGSM-Config:/home/sdtdserver/lgsm/config-lgsm/sdtdserver
+      - ./data/ServerFiles:/home/sdtdserver/serverfiles/
+      - ./data/logs:/home/sdtdserver/log/
+      - ./data/backups:/home/sdtdserver/lgsm/backup/
+    ports:
+      - 26900:26900/tcp
+      - 26900:26900/udp
+      - 26901:26901/udp
+      - 26902:26902/udp
