@@ -1,2 +1,2 @@
-# seven
-SevenDays webserver download files
+# 7DaysToDie
+SevenDays webserver for download files
